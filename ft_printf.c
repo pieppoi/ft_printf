@@ -14,17 +14,17 @@
 
 int	ft_printf(const char *inp, ...)
 {
-	const char	*save;
-	va_list		arg;
-	int			n;
+    const char	*save;
+    va_list		arg;
+    int			n;
 
-	n = 0;
-	save = ft_strdup(inp);
-	if (!save)
-		return (0);
-	va_start(arg, inp);
-	n = ft_count_out(save, arg);
-	va_end(arg);
-	free((char *)save);
-	return (n);
+    n = 0;
+    save = ft_strdup(inp);
+    if (!save)
+        return (0);
+    va_start(arg, inp);
+    n = ft_count_out(save, arg);
+    va_end(arg);
+    free((char *)save);
+    return (n);
 }

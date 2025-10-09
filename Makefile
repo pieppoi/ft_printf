@@ -12,9 +12,10 @@
 
 CC = cc
 LIBFT = ./libft/libft.a
-SRCS = ft_alltolower.c ft_base_point_c.c ft_count_out.c ft_printf.c ft_putstr_c.c ft_something_treat.c\
-		ft_treat_char.c ft_treat_hex.c ft_treat_int.c ft_treat_point.c ft_treat_string.c ft_treat_uint.c
-INCS = includes
+SRCS = ft_alltolower.c ft_base_point_c.c ft_count_out.c ft_printf.c ft_putstr_c.c ft_something_treat.c \
+      ft_treat_char.c ft_treat_hex.c ft_treat_int.c ft_treat_point.c ft_treat_string.c ft_treat_uint.c
+BONUS_SRCS = bonus/ft_printf_bonus.c ft_bonus_parse.c ft_bonus_format.c
+INCS = .
 NAME = libftprintf.a
 OBJS = ${SRCS:.c=.o}
 RM = rm -f
@@ -22,7 +23,7 @@ LIBC = ar rc
 LIBR = ranlib
 CFLAGS = -Wall -Wextra -Werror
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
 
 .c.o:
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -I ${INCS}
@@ -34,6 +35,12 @@ ${NAME}: ${OBJS}
 	${LIBR} ${NAME}
 
 all: ${NAME}
+
+bonus: ${OBJS} ${BONUS_SRCS:.c=.o}
+	${MAKE} -C ./libft
+	cp libft/libft.a ${NAME}
+	${LIBC} ${NAME} ${OBJS} ${BONUS_SRCS:.c=.o}
+	${LIBR} ${NAME}
 
 clean:
 	$(MAKE) clean -C ./libft

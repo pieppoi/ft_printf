@@ -15,6 +15,7 @@
 
 # include "libft/libft.h"
 # include <stdarg.h>
+/* no extra includes for mandatory */
 
 char	*ft_alltolower(char *c);
 char	*ft_base_point(unsigned long long p, int b);
@@ -28,5 +29,7 @@ int		ft_treat_int(int i);
 int		ft_treat_point(unsigned long long point);
 int		ft_treat_string(char *str);
 int		ft_treat_uint(unsigned long long u);
+
+/* bonus structures and APIs are declared in bonus/ft_printf_bonus.h */
 
 #endif
