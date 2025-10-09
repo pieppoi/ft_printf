@@ -15,7 +15,7 @@
 
 # include "libft/libft.h"
 # include <stdarg.h>
-# include <stddef.h>
+/* no extra includes for mandatory */
 
 char	*ft_alltolower(char *c);
 char	*ft_base_point(unsigned long long p, int b);
@@ -30,20 +30,6 @@ int		ft_treat_point(unsigned long long point);
 int		ft_treat_string(char *str);
 int		ft_treat_uint(unsigned long long u);
 
-typedef struct s_fmt
-{
-    int     flag_minus;
-    int     flag_zero;
-    int     flag_hash;
-    int     flag_plus;
-    int     flag_space;
-    int     width;      // -1 if not specified
-    int     precision;  // -1 if not specified
-    char    spec;       // one of cspdiuxX%
-}   t_fmt;
-
-// Bonus parsing/formatting
-int     ft_parse_format(const char *s, int i, t_fmt *fmt);
-int     ft_format_print(const t_fmt *fmt, va_list ap);
+/* bonus structures and APIs are declared in bonus/ft_printf_bonus.h */
 
 #endif

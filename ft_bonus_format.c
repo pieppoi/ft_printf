@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "bonus/ft_printf_bonus.h"
 
 static int max_int(int a, int b) { return (a > b ? a : b); }
 
@@ -260,17 +260,9 @@ static int handle_uxx(const t_fmt *fmt, unsigned long long u, int base, int uppe
 
 static int handle_percent(const t_fmt *fmt)
 {
-    int inner = 1;
-    int pad = (fmt->width > inner) ? (fmt->width - inner) : 0;
-    int count = 0;
-
-    if (!fmt->flag_minus)
-        count += put_n_chars(fmt->flag_zero ? '0' : ' ', pad);
+    (void)fmt;
     ft_putchar_fd('%', 1);
-    count += 1;
-    if (fmt->flag_minus)
-        count += put_n_chars(' ', pad);
-    return count;
+    return 1;
 }
 
 int ft_format_print(const t_fmt *fmt, va_list ap)
