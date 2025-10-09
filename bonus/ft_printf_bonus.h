@@ -6,14 +6,14 @@
 /*   By: mkazuhik <mkazuhik@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 20:39:54 by mkazuhik          #+#    #+#             */
-/*   Updated: 2025/10/09 20:40:14 by mkazuhik         ###   ########.fr       */
+/*   Updated: 2025/10/09 20:43:52 by mkazuhik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_BONUS_H
 #define FT_PRINTF_BONUS_H
 
-#include "../ft_printf.h"
+#include "../srcs/ft_printf.h"
 
 typedef struct s_fmt
 {
