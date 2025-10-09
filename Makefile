@@ -23,29 +23,32 @@ SRCS = $(addprefix ./srcs/, $(FILES))
 BONUS_SRCS = $(addprefix ${BONUS_DIR}/, $(BONUS_FILES))
 OBJS = ${SRCS:.c=.o}
 BONUS_OBJS = ${BONUS_SRCS:.c=.o}
-# Build set toggled by WITH_BONUS variable
-SRCS_ALL = ${SRCS} $(if ${WITH_BONUS},${BONUS_SRCS})
-OBJS_ALL = ${SRCS_ALL:.c=.o}
+#
+# Build 'bonus' like libft: base OBJS for all, BONUS_OBJS only in 'bonus' target
 RM = rm -f
 LIBC = ar rc
 LIBR = ranlib
 CFLAGS = -Wall -Wextra -Werror
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
 
 .c.o:
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -I ${INCS}
 
-${NAME}: ${OBJS_ALL}
+${NAME}: ${OBJS}
 	${MAKE} -C ${LIBFT_DIR}
 	cp ${LIBFT} ${NAME}
-	${LIBC} ${NAME} ${OBJS_ALL}
+	${LIBC} ${NAME} ${OBJS}
 	${LIBR} ${NAME}
 
 all: ${NAME}
 
-bonus:
-	${MAKE} WITH_BONUS=1 all
+bonus: ${OBJS} ${BONUS_OBJS}
+	${MAKE} -C ${LIBFT_DIR}
+	cp ${LIBFT} ${NAME}
+	${LIBC} ${NAME} ${OBJS} ${BONUS_OBJS}
+	${LIBR} ${NAME}
+	touch bonus
 
 clean:
 	${MAKE} -C ${LIBFT_DIR} clean
