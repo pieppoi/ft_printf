@@ -1,0 +1,80 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_bonus_parse.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mkazuhik <mkazuhik@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/09 10:00:00 by mkazuhik          #+#    #+#             */
+/*   Updated: 2025/10/09 10:00:00 by mkazuhik         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+
+static int ft_is_flag_char(char ch)
+{
+    return (ch == '-' || ch == '0' || ch == '#' || ch == '+' || ch == ' ');
+}
+
+static int ft_is_spec_char(char ch)
+{
+    return (ch == 'c' || ch == 's' || ch == 'p' || ch == 'd' || ch == 'i'
+        || ch == 'u' || ch == 'x' || ch == 'X' || ch == '%');
+}
+
+int ft_parse_format(const char *s, int i, t_fmt *fmt)
+{
+    fmt->flag_minus = 0;
+    fmt->flag_zero = 0;
+    fmt->flag_hash = 0;
+    fmt->flag_plus = 0;
+    fmt->flag_space = 0;
+    fmt->width = -1;
+    fmt->precision = -1;
+    fmt->spec = '\0';
+
+    while (s[i] && ft_is_flag_char(s[i]))
+    {
+        if (s[i] == '-')
+            fmt->flag_minus = 1;
+        else if (s[i] == '0')
+            fmt->flag_zero = 1;
+        else if (s[i] == '#')
+            fmt->flag_hash = 1;
+        else if (s[i] == '+')
+            fmt->flag_plus = 1;
+        else if (s[i] == ' ')
+            fmt->flag_space = 1;
+        i++;
+    }
+
+    if (s[i] && ft_isdigit(s[i]))
+    {
+        fmt->width = 0;
+        while (s[i] && ft_isdigit(s[i]))
+        {
+            fmt->width = fmt->width * 10 + (s[i] - '0');
+            i++;
+        }
+    }
+
+    if (s[i] == '.')
+    {
+        i++;
+        fmt->precision = 0;
+        while (s[i] && ft_isdigit(s[i]))
+        {
+            fmt->precision = fmt->precision * 10 + (s[i] - '0');
+            i++;
+        }
+    }
+
+    if (s[i] && ft_is_spec_char(s[i]))
+    {
+        fmt->spec = s[i];
+        i++;
+        return (i);
+    }
+    return (-1);
+}
