@@ -18,11 +18,19 @@ FILES = ft_alltolower.c ft_base_point_c.c ft_count_out.c ft_printf.c ft_putstr_c
 BONUS_FILES = ft_printf_bonus.c
 INCS = .
 BONUS_DIR = ./bonus
+BONUS_FLAG = .bonus_enabled
 NAME = libftprintf.a
 SRCS = $(addprefix ./srcs/, $(FILES))
 BONUS_SRCS = $(addprefix ${BONUS_DIR}/, $(BONUS_FILES))
 OBJS = ${SRCS:.c=.o}
 BONUS_OBJS = ${BONUS_SRCS:.c=.o}
+# Set of sources/objects used to build; includes bonus if flag exists
+ifeq (,$(wildcard ${BONUS_FLAG}))
+SRCS_ALL = ${SRCS}
+else
+SRCS_ALL = ${SRCS} ${BONUS_SRCS}
+endif
+OBJS_ALL = ${SRCS_ALL:.c=.o}
 RM = rm -f
 LIBC = ar rc
 LIBR = ranlib
@@ -33,19 +41,17 @@ CFLAGS = -Wall -Wextra -Werror
 .c.o:
 	${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -I ${INCS}
 
-${NAME}: ${OBJS}
-	${MAKE} -C ./libft
-	cp libft/libft.a ${NAME}
-	${LIBC} ${NAME} ${OBJS}
+${NAME}: ${OBJS_ALL}
+	${MAKE} -C ${LIBFT_DIR}
+	cp ${LIBFT} ${NAME}
+	${LIBC} ${NAME} ${OBJS_ALL}
 	${LIBR} ${NAME}
 
 all: ${NAME}
 
-bonus: ${OBJS} ${BONUS_SRCS:.c=.o}
-	${MAKE} -C ./libft
-	cp libft/libft.a ${NAME}
-	${LIBC} ${NAME} ${OBJS} ${BONUS_SRCS:.c=.o}
-	${LIBR} ${NAME}
+bonus:
+	touch ${BONUS_FLAG}
+	${MAKE} all
 
 clean:
 	${MAKE} -C ${LIBFT_DIR} clean
@@ -55,5 +61,6 @@ clean:
 fclean: clean
 	${RM} ${NAME}
 	${MAKE} -C ${LIBFT_DIR} fclean
+	${RM} ${BONUS_FLAG}
 
 re: fclean all
