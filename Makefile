@@ -12,6 +12,7 @@
 
 CC = cc
 LIBFT = ./libft/libft.a
+LIBFT_DIR = ./libft
 FILES = ft_alltolower.c ft_base_point_c.c ft_count_out.c ft_printf.c ft_putstr_c.c ft_something_treat.c \
       ft_treat_char.c ft_treat_hex.c ft_treat_int.c ft_treat_point.c ft_treat_string.c ft_treat_uint.c
 BONUS_FILES = ft_printf_bonus.c
@@ -20,6 +21,7 @@ NAME = libftprintf.a
 SRCS = $(addprefix ./srcs/, $(FILES))
 BONUS_SRCS = $(addprefix ./bonus/, $(BONUS_FILES))
 OBJS = ${SRCS:.c=.o}
+BONUS_OBJS = ${BONUS_SRCS:.c=.o}
 RM = rm -f
 LIBC = ar rc
 LIBR = ranlib
@@ -45,12 +47,11 @@ bonus: ${OBJS} ${BONUS_SRCS:.c=.o}
 	${LIBR} ${NAME}
 
 clean:
-	${MAKE} clean -C ./libft
-	${RM} ${OBJS} ${BONUS_OBJS}
 	${MAKE} -C ${LIBFT_DIR} clean
+	${RM} ${OBJS} ${BONUS_OBJS}
 
 fclean: clean
 	${RM} ${NAME}
-	${MAKE} fclean -C ./libft
+	${MAKE} -C ${LIBFT_DIR} fclean
 
 re: fclean all
