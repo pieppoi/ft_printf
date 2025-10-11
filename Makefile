@@ -6,7 +6,7 @@
 #    By: mkazuhik <mkazuhik@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/13 15:10:10 by mkazuhik          #+#    #+#              #
-#    Updated: 2025/10/11 09:46:32 by mkazuhik         ###   ########.fr        #
+#    Updated: 2025/10/11 19:35:53 by mkazuhik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ RM = rm -f
 LIBC = ar rc
 LIBR = ranlib
 CFLAGS = -Wall -Wextra -Werror
+BONUS_FLAG = .bonus_exists
 
 .PHONY: all clean fclean re bonus
 
@@ -44,18 +45,21 @@ ${NAME}: ${OBJS}
 
 all: ${NAME}
 
-bonus: ${OBJS} ${BONUS_OBJS}
+bonus: ${BONUS_FLAG}
+
+${BONUS_FLAG}: ${OBJS} ${BONUS_OBJS}
 	${MAKE} -C ./libft
 	cp libft/libft.a ${NAME}
 	${LIBC} ${NAME} ${BONUS_OBJS} ${OBJS}
 	${LIBR} ${NAME}
+	@touch ${BONUS_FLAG}
 
 clean:
 	${MAKE} clean -C ./libft
 	${RM} ${OBJS} ${BONUS_OBJS}
 
 fclean: clean
-	${RM} ${NAME}
+	${RM} ${NAME} ${BONUS_FLAG}
 	${MAKE} fclean -C ./libft
 
 re: fclean all
