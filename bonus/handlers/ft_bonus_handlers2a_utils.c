@@ -19,9 +19,9 @@ void	calc_p_params(const t_fmt *fmt, unsigned long long p,
 
 	if (p == 0)
 	{
-		*nlen = 3;
-		if (fmt->width > 3)
-			*pad = fmt->width - 3;
+		*nlen = 0;
+		if (fmt->width > 5)
+			*pad = fmt->width - 5;
 		else
 			*pad = 0;
 	}
