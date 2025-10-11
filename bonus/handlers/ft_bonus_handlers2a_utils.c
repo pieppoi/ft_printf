@@ -6,7 +6,7 @@
 /*   By: mkazuhik <mkazuhik@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 09:58:27 by mkazuhik          #+#    #+#             */
-/*   Updated: 2025/10/11 09:58:30 by mkazuhik         ###   ########.fr       */
+/*   Updated: 2025/10/11 20:11:10 by mkazuhik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	calc_p_params(const t_fmt *fmt, unsigned long long p,
 
 	if (p == 0)
 	{
-		*nlen = 3;
-		if (fmt->width > 3)
-			*pad = fmt->width - 3;
+		*nlen = 0;
+		if (fmt->width > 5)
+			*pad = fmt->width - 5;
 		else
 			*pad = 0;
 	}
