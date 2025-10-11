@@ -6,7 +6,7 @@
 /*   By: mkazuhik <mkazuhik@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:55:29 by mkazuhik          #+#    #+#             */
-/*   Updated: 2024/09/12 16:44:55 by mkazuhik         ###   ########.fr       */
+/*   Updated: 2025/10/11 08:16:38 by mkazuhik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	**ft_split1(char const *s, char c, char **b, int sep)
 		b[word] = (char *)malloc(sizeof(char) * (l_count + 1));
 		if (!b[word])
 			return (all_free(b, i));
-        input_word(b[word], s - l_count, c);
+		input_word(b[word], s - l_count, c);
 		l_count = 0;
 		word++;
 	}

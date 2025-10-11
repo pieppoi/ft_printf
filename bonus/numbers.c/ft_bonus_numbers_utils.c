@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_bonus_numbers_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkazuhik <mkazuhik@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/11 07:35:02 by mkazuhik          #+#    #+#             */
-/*   Updated: 2025/10/11 07:35:35 by mkazuhik         ###   ########.fr       */
+/*   Created: 2025/10/11 08:40:00 by mkazuhik          #+#    #+#             */
+/*   Updated: 2025/10/11 09:48:13 by mkazuhik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf_bonus.h"
 
-int	ft_printf(const char *inp, ...)
+int	ft_calc_pad(const t_fmt *fmt, int inner, int is_right)
 {
-	va_list		ap;
-	int			count;
+	int	pad;
 
-	va_start(ap, inp);
-	count = ft_count_out(inp, ap);
-	va_end(ap);
-	return (count);
+	if (fmt->width > inner)
+		pad = fmt->width - inner;
+	else
+		pad = 0;
+	if (!is_right)
+	{
+		if (fmt->flag_minus)
+			return (0);
+		return (pad);
+	}
+	else
+	{
+		if (!fmt->flag_minus)
+			return (0);
+		return (pad);
+	}
 }

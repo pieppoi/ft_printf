@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_bonus_handlers2a.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkazuhik <mkazuhik@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/11 07:35:02 by mkazuhik          #+#    #+#             */
-/*   Updated: 2025/10/11 07:35:35 by mkazuhik         ###   ########.fr       */
+/*   Created: 2025/10/11 09:58:57 by mkazuhik          #+#    #+#             */
+/*   Updated: 2025/10/11 09:58:58 by mkazuhik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf_bonus.h"
 
-int	ft_printf(const char *inp, ...)
+static int	handle_p(const t_fmt *fmt, unsigned long long p)
 {
-	va_list		ap;
-	int			count;
+	int	nlen;
+	int	pad;
 
-	va_start(ap, inp);
-	count = ft_count_out(inp, ap);
-	va_end(ap);
-	return (count);
+	calc_p_params(fmt, p, &nlen, &pad);
+	return (output_p(fmt, p, nlen, pad));
+}
+
+int	ft_handle_p(const t_fmt *fmt, unsigned long long p)
+{
+	return (handle_p(fmt, p));
 }

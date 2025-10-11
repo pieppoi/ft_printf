@@ -6,14 +6,14 @@
 /*   By: mkazuhik <mkazuhik@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:19:45 by mkazuhik          #+#    #+#             */
-/*   Updated: 2024/08/14 17:28:34 by mkazuhik         ###   ########.fr       */
+/*   Updated: 2025/10/11 08:12:04 by mkazuhik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include <stdarg.h>
 /* no extra includes for mandatory */
 
