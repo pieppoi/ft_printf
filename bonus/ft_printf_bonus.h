@@ -6,7 +6,7 @@
 /*   By: mkazuhik <mkazuhik@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 20:39:54 by mkazuhik          #+#    #+#             */
-/*   Updated: 2025/10/11 09:54:35 by mkazuhik         ###   ########.fr       */
+/*   Updated: 2025/10/19 01:17:34 by mkazuhik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		output_p_hex(const t_fmt *fmt, unsigned long long p, int nlen,
 			int pad);
 int		output_p(const t_fmt *fmt, unsigned long long p, int nlen, int pad);
 
-int		ft_parse_format(const char *s, int i, t_fmt *fmt);
+int		ft_parse_format(const char *s, int *i, t_fmt *fmt);
 void	ft_parse_flags(const char *s, int *i, t_fmt *fmt);
 void	ft_parse_width(const char *s, int *i, t_fmt *fmt);
 void	ft_parse_precision(const char *s, int *i, t_fmt *fmt);

@@ -6,7 +6,7 @@
 /*   By: mkazuhik <mkazuhik@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 08:30:00 by mkazuhik          #+#    #+#             */
-/*   Updated: 2025/10/11 09:50:36 by mkazuhik         ###   ########.fr       */
+/*   Updated: 2025/10/19 00:37:53 by mkazuhik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,5 @@ int	ft_is_flag_char(char ch)
 int	ft_is_spec_char(char ch)
 {
 	return (ch == 'c' || ch == 's' || ch == 'p' || ch == 'd' || ch == 'i'
-		|| ch == 'u' || ch == 'x' || ch == 'X' || ch == '%');
+		|| ch == 'u' || ch == 'x' || ch == 'X' || ch == 'o' || ch == '%');
 }

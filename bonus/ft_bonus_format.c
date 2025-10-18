@@ -28,6 +28,8 @@ int	ft_format_print(const t_fmt *fmt, va_list ap)
 		return (ft_handle_uxx(fmt, va_arg(ap, unsigned int), 16, 0));
 	else if (fmt->spec == 'X')
 		return (ft_handle_uxx(fmt, va_arg(ap, unsigned int), 16, 1));
+	else if (fmt->spec == 'o')
+		return (ft_handle_uxx(fmt, va_arg(ap, unsigned int), 8, 0));
 	else if (fmt->spec == '%')
 		return (ft_handle_percent(fmt));
 	return (0);

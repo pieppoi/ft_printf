@@ -6,7 +6,7 @@
 /*   By: mkazuhik <mkazuhik@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 20:39:22 by mkazuhik          #+#    #+#             */
-/*   Updated: 2025/10/11 09:46:38 by mkazuhik         ###   ########.fr       */
+/*   Updated: 2025/10/19 01:17:34 by mkazuhik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	handle_format(const char *s, int *i, int *count, va_list ap)
 	int		next;
 
 	(*i)++;
-	next = ft_parse_format(s, *i, &fmt);
+	next = ft_parse_format(s, i, &fmt);
 	if (next == -1)
 	{
 		ft_putchar_fd('%', 1);
@@ -71,7 +71,7 @@ static int	handle_format2(const char *s, int *i, int *count, va_list ap)
 		(*count)++;
 		return (-1);
 	}
-	next = ft_parse_format(s, *i, &fmt);
+	next = ft_parse_format(s, i, &fmt);
 	if (next == -1)
 	{
 		ft_putchar_fd('%', 1);
